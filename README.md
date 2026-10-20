@@ -12,9 +12,15 @@ Open `index.html` in a browser, or serve the folder:
 python3 -m http.server 8080 --directory .
 ```
 
-## Replace photos
+## Photos (2026-10-20)
 
-Drop pack photos into `assets/meds/` using the slug filenames (see `IMAGE-SOURCES.md` and `DESIGN.md`). Keep the same names so `index.html` does not need edits.
+Pack + blister / bottle photos are in `assets/meds/`. Sources and licenses: **`IMAGE-SOURCES.md`**.
+
+- **Exact brand now:** DAFLON 500, DIFFLAM mouthwash, Kenalog in Orabase.
+- **Strength-correct but brand may differ (on-page「示意」):** pantoprazole (GASPAIN-40), amlodipine (Amlip-2.5), urea (Flexitol 10%).
+- **Still prefer household packs:** Tagrisso / 奧希替尼 (box-only web photo), entecavir, simvastatin, plus any brand that differs from the HK shelf pack.
+
+Drop household pack photos into `assets/meds/` using the same slug filenames — `index.html` does not need edits. `augmentin-1g`, `daflon-500`, and `amlodipine-2-5` are each one file referenced twice.
 
 ## Privacy note
 
@@ -22,5 +28,5 @@ GitHub Pages sites are **public on the internet**. Do not add patient names or I
 
 ## Credits
 
-Design: Celine · Implementation: Jessie · Content from family prescription card (doses must not be changed without clinician guidance).
+Design: Celine · Implementation: Jessie · Content from family prescription card (doses must not be changed without clinician guidance).  
 Photo sources and licenses: `IMAGE-SOURCES.md`.
