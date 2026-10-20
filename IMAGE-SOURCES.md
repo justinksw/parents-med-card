@@ -6,11 +6,11 @@ Policy: prefer Wikimedia Commons / NIH public-domain / clearly CC-licensed image
 
 | Chinese name | Latin / product | Local file | Source URL | License / attribution | Fetched (Asia/Hong_Kong) |
 |---|---|---|---|---|---|
-| 護胃藥（泮托拉唑） | Pantoprazole Sodium **40 mg** delayed-release tablets carton (AHP) | `assets/meds/pantoprazole-40.jpg` | https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5ff3cf6c-6f0a-4374-8b80-4e1eb1df6245 (image: `40 mg Pantoprazole DR Tablets Carton 5x10.jpg`) | **U.S. DailyMed / FDA labeling image** — public domain U.S. government work for personal reference. Replaced prior Commons 20 mg pill photo. | 2026-10-20 |
+| 護胃藥（泮托拉唑） | Pantoprazole Sodium **40 mg** delayed-release tablets carton (AHP) | `assets/meds/pantoprazole-40.jpg` | https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5ff3cf6c-6f0a-4374-8b80-4e1eb1df6245 (image: `40 mg Pantoprazole DR Tablets Carton 10x10.jpg` (top panel cropped for live asset)) | **U.S. DailyMed / FDA labeling image** — public domain U.S. government work for personal reference. Replaced prior Commons 20 mg pill photo. | 2026-10-20 |
 | 安滅菌（抗生素） | Augmentin 1 g (GSK pack + blister) | `assets/meds/augmentin-1g.jpg` | https://commons.wikimedia.org/wiki/File:Augmentin_1_g_tbl.jpg | **CC BY-SA 4.0** — Tomino de WS. Direct file: https://upload.wikimedia.org/wikipedia/commons/9/97/Augmentin_1_g_tbl.jpg | 2026-10-20 |
 | 達芙琳 | **Stand-in:** Diohespan max 1000 mg (diosmin) — **not DAFLON brand** | `assets/meds/daflon-500.jpg` | https://commons.wikimedia.org/wiki/File:2023_Diohespan_max_1000_mg.jpg | **CC BY-SA 4.0** — Jacek Halicki. Same active class (diosmin / veinotonic); **replace with Justin’s own DAFLON 500 pack photo** when available. No free Commons DAFLON pack found. | 2026-10-20 |
 | 標靶藥（奧希替尼） | Tagrisso® (osimertinib) tablets **80 mg** — U.S. bottle label | `assets/meds/osimertinib-80.jpg` | https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=5e81b4a7-b971-45e1-9c31-29cea8c87ce7&name=image-09.jpg (SPL setid `5e81b4a7-b971-45e1-9c31-29cea8c87ce7`; drug page https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5e81b4a7-b971-45e1-9c31-29cea8c87ce7) | **U.S. FDA DailyMed labeling image** (80 mg bottle label; NDC shown on art). Not a free CC photograph of a physical carton; trademarks remain with AstraZeneca. Prefer household 泰瑞沙 / Tagrisso pack photo (HK blister may differ). | 2026-10-20 |
-| 降血壓藥（氨氯地平） | Amlodipine Besylate Tablets **2.5 mg** bottle label (China Resources Saike) | `assets/meds/amlodipine-2-5.jpg` | https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3518853a-4c5b-4161-a178-8da7f656f009 (image: `2.5mg90.jpg`) | **U.S. DailyMed / FDA labeling image** — public domain U.S. government work for personal reference. Replaced prior Apo-Amlo **5 mg** Commons pack. | 2026-10-20 |
+| 降血壓藥（氨氯地平） | Amlodipine Besylate Tablets **2.5 mg** bottle label (PD-Rx / Oxford) | `assets/meds/amlodipine-2-5.jpg` | https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=1080fcea-a5da-499d-a855-690c13559071&name=72789260.jpg (SPL setid `1080fcea-a5da-499d-a855-690c13559071`; drug page https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1080fcea-a5da-499d-a855-690c13559071) | **U.S. FDA DailyMed labeling image** — strength **2.5 mg** (NDC 72789-260). Replaced Commons Apo-Amlo **5 mg** pack. Prefer household HK pack when available. | 2026-10-20 |
 | 抗乙肝藥（恩替卡韋） | Entecavir 0.5 mg (NorthStar bottle label from DailyMed) | `assets/meds/entecavir-0-5.jpg` | https://dailymed.nlm.nih.gov/dailymed/image.cfm?setid=da705339-c349-444f-a058-4f0cef2864bf&name=0pt5mg%20bottle%20label.jpg (SPL setid `da705339-c349-444f-a058-4f0cef2864bf`) | **U.S. FDA DailyMed labeling image** — used for personal reference. Product trademarks remain with rights holders; not a free Creative Commons photograph. Prefer swapping for household Baraclude / local pack photo. | 2026-10-20 |
 | 降膽固醇（辛伐他汀） | Simvastatin (assortment of generic tablets) | `assets/meds/simvastatin-5.jpg` | https://commons.wikimedia.org/wiki/File:Simvastatin_varieties.jpg | **CC BY-SA 4.0** — Whispyhistory. Tablet assortment, not a single branded 5 mg HK pack. | 2026-10-20 |
 | 止痛藥（服他寧） | Diclofenac / Voltaren tablets | `assets/meds/diclofenac-100.jpg` | https://commons.wikimedia.org/wiki/File:Voltaren_tablets.jpg | **Public domain** — Editor182 (own work released PD). | 2026-10-20 |
@@ -26,11 +26,11 @@ All 13 slots now use real JPEG photos (no SVG/PNG placeholders).
 
 | File | On disk | Verified against source |
 |---|---|---|
-| pantoprazole-40.jpg | JPEG ~600×600 (cropped) | DailyMed AHP 40 mg carton |
+| pantoprazole-40.jpg | JPEG 340×328 (top carton crop) | DailyMed AHP 40 mg carton 10×10 |
 | augmentin-1g.jpg | JPEG 4032×3016 | Exact MD5 match to Commons upload |
 | daflon-500.jpg | JPEG 4703×3208 | Exact MD5 match (Diohespan stand-in) |
 | osimertinib-80.jpg | JPEG 725×385 | DailyMed Tagrisso 80 mg bottle label (`image-09.jpg`) |
-| amlodipine-2-5.jpg | JPEG ~800×800 (letterboxed) | DailyMed 2.5 mg bottle label |
+| amlodipine-2-5.jpg | JPEG 900×600 (compressed) | DailyMed PD-Rx 2.5 mg bottle label (`72789260.jpg`) |
 | entecavir-0-5.jpg | JPEG 624×299 | Exact MD5 match to DailyMed bottle label |
 | simvastatin-5.jpg | JPEG 2876×2899 | Exact MD5 match |
 | diclofenac-100.jpg | JPEG 1241×1852 | Exact MD5 match |
@@ -74,3 +74,7 @@ Venues tried: Openverse API (little usable for these brand names), Wikimedia Com
 - **Replaced:** `amlodipine-2-5.jpg` ← DailyMed **2.5 mg** bottle label (was Apo-Amlo 5 mg).
 - **Still stand-in (no free brand pack found):** `daflon-500.jpg` (Diohespan), `difflam-mouthwash.jpg` (generic benzydamine). Keep on-page caption「示意／請對照家中藥盒」; prefer Justin’s household DAFLON / 特快靈 photos.
 
+
+### Candidate archive
+Full hunt log + rejected files: `assets/meds/_candidates/CANDIDATES.md`  
+Assist note for Jessie: `NOTE-FOR-JESSIE.md`
