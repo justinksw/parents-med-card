@@ -300,7 +300,28 @@ body {
   font-weight: 500;
   color: var(--muted);
   line-height: 1.35;
+  overflow-wrap: normal;
+  word-break: keep-all;
+  hyphens: none;
 }
+
+.med-latin .strength {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.photo-hint {
+  margin: 2px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.nowrap { white-space: nowrap; }
+
+.prn-title-full { display: inline; }
+.prn-title-short { display: none; }
 
 .med-purpose {
   margin: 0;
@@ -583,6 +604,14 @@ body {
 
   .section-title { font-size: 22px; }
   .med-name { font-size: 20px; }
+
+  .prn-title-full { display: none; }
+  .prn-title-short { display: inline; }
+
+  .med-latin {
+    overflow-wrap: normal;
+    word-break: keep-all;
+  }
 }
 
 /* —— Print —— */
@@ -635,5 +664,39 @@ body {
   .footnote-bar {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
+  }
+
+  /* PRN less dense on A4 */
+  .prn-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .prn-row {
+    padding: 16px 18px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .prn-row .med-photo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .prn-list {
+    gap: 12px;
+  }
+
+  .med-latin {
+    overflow-wrap: normal;
+    word-break: keep-all;
+  }
+}
+
+
+/* Stack PRN below ~900px (tablet / narrow print preview) */
+@media (max-width: 900px) {
+  .prn-grid {
+    grid-template-columns: 1fr;
   }
 }
