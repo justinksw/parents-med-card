@@ -70,7 +70,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 20px;
-  margin-bottom: 28px;
+  margin-bottom: 22px;
 }
 
 .header-text h1 {
@@ -83,7 +83,7 @@ body {
 
 .header-text .h2 {
   margin: 0 0 8px;
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 600;
   color: var(--navy);
   line-height: 1.25;
@@ -134,7 +134,7 @@ body {
 .time-block {
   border-radius: 16px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
   break-inside: avoid;
   page-break-inside: avoid;
 }
@@ -160,12 +160,25 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 10px 12px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+}
+
+.section-subhead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  width: 100%;
+}
+
+.time-block--bedtime .section-head {
+  margin-bottom: 8px;
 }
 
 .section-title {
   margin: 0;
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -248,7 +261,7 @@ body {
 .med-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 13px;
 }
 
 .med-row {
@@ -270,11 +283,14 @@ body {
 .med-photo {
   width: 96px;
   height: 96px;
+  min-height: 96px;
   flex-shrink: 0;
   border-radius: 12px;
-  border: 1px solid #E0E0E0;
-  background: #fff;
+  border: 1px solid #E0DCD6;
+  background: #F3F1ED;
   object-fit: contain;
+  object-position: center;
+  box-shadow: inset 0 0 0 1px rgba(30, 42, 80, 0.06);
   display: block;
 }
 
@@ -292,11 +308,17 @@ body {
   font-weight: 700;
   color: var(--text);
   line-height: 1.25;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.med-name--prn {
+  font-size: 20px;
 }
 
 .med-latin {
   margin: 0;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--muted);
   line-height: 1.35;
@@ -306,29 +328,36 @@ body {
 }
 
 .med-latin .strength {
-  display: inline-block;
+  display: block;
   white-space: nowrap;
+  margin-top: 2px;
 }
 
 .photo-hint {
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
-  color: var(--muted);
+  color: #4A4A4A;
   line-height: 1.35;
 }
 
 .nowrap { white-space: nowrap; }
+
+.name-paren {
+  white-space: nowrap;
+}
 
 .prn-title-full { display: inline; }
 .prn-title-short { display: none; }
 
 .med-purpose {
   margin: 0;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   color: var(--text);
   line-height: 1.4;
+  word-break: keep-all;
+  overflow-wrap: normal;
 }
 
 .med-purpose .danger {
@@ -348,11 +377,13 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-width: 116px;
+  min-height: 44px;
   padding: 8px 14px;
   border-radius: 10px;
   background: var(--dose-chip-bg);
   color: var(--dose-chip-fg);
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 700;
   line-height: 1.2;
   white-space: nowrap;
@@ -361,11 +392,13 @@ body {
 .tag-course {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   background: var(--course);
   color: #fff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 5px 12px;
+  min-height: 28px;
   border-radius: 999px;
   line-height: 1.3;
 }
@@ -396,7 +429,7 @@ body {
 
 /* —— PRN —— */
 .prn-section {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   break-inside: avoid;
   page-break-inside: avoid;
 }
@@ -413,6 +446,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+  align-items: start;
 }
 
 .prn-col {
@@ -457,8 +491,9 @@ body {
 }
 
 .prn-row .med-photo {
-  width: 72px;
-  height: 72px;
+  width: 84px;
+  height: 84px;
+  min-height: 84px;
 }
 
 .prn-trigger {
@@ -477,6 +512,31 @@ body {
   line-height: 1.35;
 }
 
+.prn-max-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0 4px;
+  padding: 8px 14px;
+  min-height: 40px;
+  border-radius: 10px;
+  border: 2px solid var(--danger);
+  background: #fff;
+  color: var(--danger);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.prn-total {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+
 .prn-note {
   margin: 0;
   font-size: 16px;
@@ -489,17 +549,18 @@ body {
   align-items: center;
   margin-top: 6px;
   padding: 8px 14px;
+  min-height: 40px;
   border-radius: 10px;
   background: var(--navy);
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.2;
 }
 
 /* —— Warnings —— */
 .warnings {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .warnings > h2 {
@@ -519,18 +580,35 @@ body {
 .warning-card {
   background: var(--amber);
   border: 2px solid var(--amber-border);
+  border-left-width: 4px;
   border-radius: 14px;
   padding: 16px 18px;
   break-inside: avoid;
   page-break-inside: avoid;
 }
 
+.warning-card--navy {
+  border-left-color: var(--navy);
+}
+.warning-card--danger {
+  border-left-color: var(--danger);
+}
+.warning-card--green {
+  border-left-color: var(--green-accent);
+}
+
 .warning-card h3 {
   margin: 0 0 8px;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--navy);
   line-height: 1.25;
+  word-break: keep-all;
+}
+
+.warning-card .icon {
+  font-size: 22px;
+  margin-right: 4px;
 }
 
 .warning-card p {
@@ -551,7 +629,7 @@ body {
 .footer {
   border-top: 1px solid #E8E4DE;
   padding-top: 16px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   color: var(--muted);
   line-height: 1.5;
@@ -572,8 +650,13 @@ body {
 
   .header { flex-direction: column; }
   .header-text h1 { font-size: 28px; }
+  .header-text .h2 { font-size: 18px; }
 
-  .date-tile { align-self: flex-start; }
+  .date-tile {
+    width: 100%;
+    align-self: stretch;
+    min-width: 0;
+  }
 
   .med-row {
     flex-wrap: wrap;
@@ -584,6 +667,15 @@ body {
   .med-photo {
     width: 72px;
     height: 72px;
+    min-height: 72px;
+  }
+
+  .med-photo-btn { min-height: 72px; }
+  .prn-row .med-photo-btn { min-height: 72px; }
+  .prn-row .med-photo {
+    width: 72px;
+    height: 72px;
+    min-height: 72px;
   }
 
   .med-side {
@@ -594,7 +686,9 @@ body {
 
   .dose-chip {
     width: 100%;
+    min-width: 0;
     min-height: 44px;
+    font-size: 18px;
     justify-content: center;
   }
 
@@ -603,14 +697,29 @@ body {
   }
 
   .section-title { font-size: 22px; }
-  .med-name { font-size: 20px; }
+  .med-name { font-size: 21px; }
+  .prn-row .med-name { font-size: 20px !important; }
 
   .prn-title-full { display: none; }
   .prn-title-short { display: inline; }
 
-  .med-latin {
+  .med-latin,
+  .med-purpose,
+  .med-name,
+  .prn-trigger,
+  .warning-card p {
     overflow-wrap: normal;
     word-break: keep-all;
+  }
+
+  /* Bedtime amber under time chip / checkbox inset */
+  .time-block--bedtime .section-subhead {
+    padding-left: 0;
+    margin-bottom: 12px;
+  }
+
+  .check-row {
+    margin-bottom: 12px;
   }
 }
 
@@ -691,6 +800,27 @@ body {
     overflow-wrap: normal;
     word-break: keep-all;
   }
+
+  .time-block,
+  .prn-section,
+  .warnings {
+    margin-bottom: 24px;
+  }
+
+  .section-title .icon,
+  .warning-card .icon,
+  .date-tile .clock {
+    display: none !important;
+  }
+
+  .med-row {
+    padding: 12px 14px;
+  }
+
+  .prn-grid {
+    align-items: start;
+  }
+
 }
 
 
@@ -713,6 +843,11 @@ body {
   border-radius: 12px;
   flex-shrink: 0;
   line-height: 0;
+  min-height: 96px;
+  align-items: center;
+}
+.prn-row .med-photo-btn {
+  min-height: 84px;
 }
 .med-photo-btn:focus-visible {
   outline: 3px solid var(--blue-border);
