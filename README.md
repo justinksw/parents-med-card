@@ -30,3 +30,12 @@ GitHub Pages sites are **public on the internet**. Do not add patient names or I
 
 Design: Celine · Implementation: Jessie · Content from family prescription card (doses must not be changed without clinician guidance).  
 Photo sources and licenses: `IMAGE-SOURCES.md`.
+
+## Fonts (subset)
+
+The Noto Sans TC `<link>` in `index.html` requests only the characters the page uses (`&text=`), which keeps the font download small. **After any wording change, regenerate it**, or new characters will show in the fallback system font:
+
+```bash
+python3 tools/subset-fonts.py          # rewrite the font link
+python3 tools/subset-fonts.py --check  # verify (exit 1 if out of date)
+```
