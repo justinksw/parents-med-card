@@ -1,24 +1,33 @@
-/* 個人專屬用藥卡 — tokens from DESIGN.md §3–4 */
+/* 個人專屬用藥卡 — tokens from DESIGN.md §3–4 · v3 polish (POLISH-BRIEF-v3) */
 :root {
   --navy: #1E2A50;
   --navy-soft: #2A3A6A;
   --text: #1A1A1A;
-  --muted: #5A5A5A;
+  --muted: #3D3D3D;          /* v3: was #5A5A5A (6.90:1) → 10.86:1 */
+  --hint: #474747;           /* v3 #12 */
   --peach: #FFF0E6;
   --peach-border: #F0A070;
   --blue: #E8F2FC;
   --blue-border: #5B9BD5;
   --navy-block: #1E2A50;
   --green: #E8F6EE;
-  --green-accent: #2E8B57;
+  --green-accent: #2E8B57;   /* border only */
   --pink: #FCEEF2;
-  --pink-accent: #C45B7A;
+  --pink-accent: #C45B7A;    /* border only */
   --amber: #FFF8E6;
   --amber-border: #E8B84A;
-  --danger: #C62828;
-  --course: #D32F2F;
+  --warning-border: #C9971F; /* v3 #10 */
+  --danger: #A31515;         /* v3 #2: was #C62828 */
+  --course: #A31515;         /* v3 #2: was #D32F2F */
+  --morning-chip: #8F3A10;   /* v3 #2: was #E67E22 */
+  --morning-ink: #7F3410;    /* v3 #2: was #C45A2A */
+  --evening-ink: #174A7C;    /* v3 #2: chip + title, were #5B9BD5 / #2B6CA3 */
+  --oral-ink: #16502F;       /* v3 #2: was #2E8B57 */
+  --topical-ink: #862A49;    /* v3 #2: was #C45B7A */
   --dose-chip-bg: #1E2A50;
   --dose-chip-fg: #FFFFFF;
+  --photo-border: #D0D0D0;   /* v3 #12 */
+  --row-border: #E8E4DE;
   --canvas: #F7F3EF;
   --white: #FFFFFF;
   --clock: #E67E22;
@@ -37,7 +46,7 @@ body {
   background: var(--canvas);
   color: var(--text);
   font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .card {
@@ -101,7 +110,7 @@ body {
   min-width: 100px;
   min-height: 88px;
   background: var(--white);
-  border: 1.5px solid #E8E4DE;
+  border: 1.5px solid var(--row-border);
   border-radius: 16px;
   padding: 12px 14px;
   text-align: center;
@@ -172,73 +181,97 @@ body {
   width: 100%;
 }
 
-.time-block--bedtime .section-head {
-  margin-bottom: 8px;
-}
+.time-block--bedtime .section-head { margin-bottom: 8px; }
 
 .section-title {
   margin: 0;
-  font-size: 23px;
+  font-size: 28px;
   font-weight: 700;
   line-height: 1.25;
 }
 
-.time-block--morning .section-title { color: #C45A2A; }
-.time-block--evening .section-title { color: #2B6CA3; }
+.time-block--morning .section-title { color: var(--morning-ink); }
+.time-block--evening .section-title { color: var(--evening-ink); }
 .time-block--bedtime .section-title { color: #FFFFFF; }
 
-.time-chip {
+/* —— Chip system (v3 #5): dose · time · warning/limit —— */
+.dose-chip,
+.time-chip,
+.chip-limit {
   display: inline-flex;
   align-items: center;
-  font-size: 18px;
+  justify-content: center;
+  min-height: 32px;
+  padding: 4px 12px;
+  border-radius: 8px;
   font-weight: 700;
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 999px;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
-.time-block--morning .time-chip { background: #E67E22; }
-.time-block--evening .time-chip { background: #5B9BD5; }
+.time-chip {
+  font-size: 18px;
+  color: #fff;
+}
+
+.time-block--morning .time-chip { background: var(--morning-chip); }
+.time-block--evening .time-chip { background: var(--evening-ink); }
 .time-block--bedtime .time-chip { background: var(--navy-soft); border: 1px solid rgba(255,255,255,0.25); }
 
-.time-chip--amber {
-  background: #E8B84A !important;
-  color: var(--navy) !important;
-  border: none !important;
+.chip-limit {
+  background: #fff;
+  border: 2px solid var(--danger);
+  color: var(--danger);
+  font-size: 17px;
 }
 
+.med-body > .chip-limit,
+.med-meta > .chip-limit {
+  align-self: flex-start;
+}
+
+/* —— 已服 row (v3 #12): whole row is the tap target —— */
 .check-row {
   display: flex;
+  width: fit-content;
   align-items: center;
   gap: 12px;
+  min-height: 48px;
+  min-width: 48px;
+  padding-right: 12px;
   margin-bottom: 14px;
+  cursor: pointer;
 }
 
 .check-row input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  min-height: 48px;
-  border: 2.5px solid var(--navy);
-  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  margin: 0 0 0 8px;
+  border: 2px solid var(--navy);
+  border-radius: 6px;
   background: #fff;
   cursor: pointer;
   flex-shrink: 0;
   position: relative;
 }
 
+.check-row input[type="checkbox"]:focus-visible {
+  outline: 3px solid var(--blue-border);
+  outline-offset: 3px;
+}
+
 .check-row input[type="checkbox"]:checked::after {
   content: "";
   position: absolute;
-  left: 14px;
-  top: 6px;
-  width: 14px;
-  height: 26px;
+  left: 9px;
+  top: 3px;
+  width: 9px;
+  height: 18px;
   border: solid var(--navy);
-  border-width: 0 4px 4px 0;
+  border-width: 0 3px 3px 0;
   transform: rotate(45deg);
 }
 
@@ -247,21 +280,20 @@ body {
   background: rgba(255,255,255,0.95);
 }
 
-.check-row label {
+.check-label {
   font-size: 18px;
   font-weight: 600;
   color: var(--text);
-  cursor: pointer;
   line-height: 1.3;
 }
 
-.time-block--bedtime .check-row label { color: #fff; }
+.time-block--bedtime .check-label { color: #fff; }
 
 /* —— Med rows —— */
 .med-list {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 16px;
 }
 
 .med-row {
@@ -272,7 +304,7 @@ body {
   border-radius: 14px;
   padding: 16px;
   min-height: 112px;
-  border: 1px solid #E8E4DE;
+  border: 1px solid var(--row-border);
 }
 
 .time-block--bedtime .med-row {
@@ -280,18 +312,36 @@ body {
   color: var(--text);
 }
 
+/* Photos (v3 #12): one fixed square frame for every pack */
+.med-photo-btn {
+  display: inline-flex;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: zoom-in;
+  border-radius: 12px;
+  flex-shrink: 0;
+  line-height: 0;
+  align-self: flex-start;
+}
+.med-photo-btn:focus-visible {
+  outline: 3px solid var(--blue-border);
+  outline-offset: 3px;
+}
+
 .med-photo {
   width: 96px;
   height: 96px;
-  min-height: 96px;
   flex-shrink: 0;
+  padding: 6px;
   border-radius: 12px;
-  border: 1px solid #E0DCD6;
-  background: #F3F1ED;
+  border: 1px solid var(--photo-border);
+  background: #fff;
   object-fit: contain;
   object-position: center;
-  box-shadow: inset 0 0 0 1px rgba(30, 42, 80, 0.06);
   display: block;
+  pointer-events: none;
 }
 
 .med-body {
@@ -310,16 +360,15 @@ body {
   line-height: 1.25;
   word-break: keep-all;
   overflow-wrap: normal;
+  line-break: strict;
 }
 
-.med-name--prn {
-  font-size: 20px;
-}
+.name-paren { white-space: nowrap; }
 
 .med-latin {
   margin: 0;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   color: var(--muted);
   line-height: 1.35;
   overflow-wrap: normal;
@@ -328,23 +377,27 @@ body {
 }
 
 .med-latin .strength {
-  display: block;
+  display: inline;
+  margin-left: 6px;
   white-space: nowrap;
-  margin-top: 2px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .photo-hint {
   margin: 2px 0 0;
   font-size: 15px;
   font-weight: 500;
-  color: #4A4A4A;
+  color: var(--hint);
   line-height: 1.35;
 }
 
 .nowrap { white-space: nowrap; }
 
-.name-paren {
-  white-space: nowrap;
+.keep {
+  display: inline-block;
+  max-width: 100%;
 }
 
 .prn-title-full { display: inline; }
@@ -352,10 +405,10 @@ body {
 
 .med-purpose {
   margin: 0;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 400;
   color: var(--text);
-  line-height: 1.4;
+  line-height: 1.5;
   word-break: keep-all;
   overflow-wrap: normal;
 }
@@ -374,34 +427,14 @@ body {
 }
 
 .dose-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   min-width: 116px;
   min-height: 44px;
-  padding: 8px 14px;
-  border-radius: 10px;
   background: var(--dose-chip-bg);
   color: var(--dose-chip-fg);
-  font-size: 19px;
-  font-weight: 700;
-  line-height: 1.2;
-  white-space: nowrap;
+  font-size: 20px;
 }
 
-.tag-course {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--course);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 5px 12px;
-  min-height: 28px;
-  border-radius: 999px;
-  line-height: 1.3;
-}
+.tag-course { font-size: 17px; }
 
 .med-side {
   display: flex;
@@ -421,17 +454,15 @@ body {
   font-weight: 600;
   color: var(--text);
   line-height: 1.4;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
-.footnote-bar strong {
-  color: var(--danger);
-}
+.footnote-bar strong { color: var(--danger); }
 
 /* —— PRN —— */
 .prn-section {
   margin-bottom: 32px;
-  break-inside: avoid;
-  page-break-inside: avoid;
 }
 
 .prn-section > h2 {
@@ -446,12 +477,14 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
-  align-items: start;
+  align-items: start; /* v3 #11: shorter column ends, no tinted empty panel */
 }
 
 .prn-col {
   border-radius: 16px;
   padding: 16px;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .prn-col--oral {
@@ -471,13 +504,13 @@ body {
   line-height: 1.25;
 }
 
-.prn-col--oral h3 { color: var(--green-accent); }
-.prn-col--topical h3 { color: var(--pink-accent); }
+.prn-col--oral h3 { color: var(--oral-ink); }
+.prn-col--topical h3 { color: var(--topical-ink); }
 
 .prn-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
 .prn-row {
@@ -488,13 +521,11 @@ body {
   border-radius: 12px;
   padding: 14px;
   border: 1px solid #E0E0E0;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
-.prn-row .med-photo {
-  width: 84px;
-  height: 84px;
-  min-height: 84px;
-}
+.med-name--prn { font-size: 20px; }
 
 .prn-trigger {
   margin: 0 0 4px;
@@ -502,66 +533,30 @@ body {
   font-weight: 700;
   color: var(--text);
   line-height: 1.35;
+  word-break: keep-all;
 }
 
-.prn-max {
-  margin: 0 0 4px;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--danger);
-  line-height: 1.35;
-}
+.prn-max-chip { margin: 2px 0 4px; }
+.sbp-chip { margin-top: 4px; }
 
-.prn-max-chip {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: 6px 0 4px;
-  padding: 8px 14px;
-  min-height: 40px;
-  border-radius: 10px;
-  border: 2px solid var(--danger);
-  background: #fff;
-  color: var(--danger);
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-
+.prn-note,
 .prn-total {
   margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text);
-  line-height: 1.35;
-}
-
-.prn-note {
-  margin: 0;
-  font-size: 16px;
+  font-size: 17px;
   color: var(--muted);
   line-height: 1.4;
 }
 
-.sbp-chip {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 6px;
-  padding: 8px 14px;
-  min-height: 40px;
-  border-radius: 10px;
-  background: var(--navy);
-  color: #fff;
+.prn-total { font-weight: 600; }
+
+.prn-note--rule {
   font-size: 18px;
   font-weight: 700;
-  line-height: 1.2;
+  color: var(--danger);
 }
 
-/* —— Warnings —— */
-.warnings {
-  margin-bottom: 32px;
-}
+/* —— Warnings (v3 #10) —— */
+.warnings { margin-bottom: 32px; }
 
 .warnings > h2 {
   margin: 0 0 14px;
@@ -579,44 +574,40 @@ body {
 
 .warning-card {
   background: var(--amber);
-  border: 2px solid var(--amber-border);
-  border-left-width: 4px;
+  border: 2px solid var(--warning-border);
   border-radius: 14px;
-  padding: 16px 18px;
+  padding: 16px;
   break-inside: avoid;
   page-break-inside: avoid;
 }
 
-.warning-card--navy {
-  border-left-color: var(--navy);
-}
-.warning-card--danger {
-  border-left-color: var(--danger);
-}
-.warning-card--green {
-  border-left-color: var(--green-accent);
-}
-
 .warning-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 8px;
   font-size: 20px;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--navy);
   line-height: 1.25;
   word-break: keep-all;
 }
 
-.warning-card .icon {
-  font-size: 22px;
-  margin-right: 4px;
+.warning-card h3 .icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
 }
+
+.warning-card--strong { border-color: var(--danger); }
+.warning-card--strong h3 { color: var(--danger); }
 
 .warning-card p {
   margin: 0;
   font-size: 18px;
   font-weight: 400;
   color: var(--text);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .warning-card .danger {
@@ -627,7 +618,7 @@ body {
 
 /* —— Footer —— */
 .footer {
-  border-top: 1px solid #E8E4DE;
+  border-top: 1px solid var(--row-border);
   padding-top: 16px;
   font-size: 15px;
   font-weight: 400;
@@ -641,6 +632,11 @@ body {
 .footer .hint {
   font-weight: 600;
   color: var(--navy);
+}
+
+/* Stack PRN below ~900px (tablet / narrow) — print restores 2 columns below */
+@media (max-width: 900px) {
+  .prn-grid { grid-template-columns: 1fr; }
 }
 
 /* —— Mobile —— */
@@ -658,208 +654,59 @@ body {
     min-width: 0;
   }
 
+  .section-title { font-size: 22px; }
+
+  /* v3 #9 */
   .med-row {
     flex-wrap: wrap;
     min-height: 0;
-    padding: 14px;
+    padding: 12px;
+    gap: 0 12px; /* chip sits exactly 8px (margin-top) under the text */
   }
+  .prn-row { padding: 12px; }
 
-  .med-photo {
-    width: 72px;
-    height: 72px;
-    min-height: 72px;
-  }
-
-  .med-photo-btn { min-height: 72px; }
-  .prn-row .med-photo-btn { min-height: 72px; }
-  .prn-row .med-photo {
-    width: 72px;
-    height: 72px;
-    min-height: 72px;
-  }
+  .med-photo { width: 80px; height: 80px; }
 
   .med-side {
     width: 100%;
     align-items: stretch;
-    margin-top: 4px;
+    margin-top: 8px;
   }
 
   .dose-chip {
     width: 100%;
     min-width: 0;
-    min-height: 44px;
+    min-height: 48px;
+  }
+
+  /* v3 #6: name line 1, bracket line 2 — every row */
+  .med-name,
+  .med-name--prn { font-size: 22px; }
+  .name-paren {
+    display: block;
     font-size: 18px;
-    justify-content: center;
+    font-weight: 600;
+    color: var(--muted);
+    margin-top: 2px;
   }
 
-  .prn-grid {
-    grid-template-columns: 1fr;
+  /* v3 #7: category on its own line, no dangling dot */
+  .med-purpose { font-size: 17px; }
+  .med-purpose .cat {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
   }
-
-  .section-title { font-size: 22px; }
-  .med-name { font-size: 21px; }
-  .prn-row .med-name { font-size: 20px !important; }
+  .med-purpose .sep { display: none; }
 
   .prn-title-full { display: none; }
   .prn-title-short { display: inline; }
 
-  .med-latin,
-  .med-purpose,
-  .med-name,
-  .prn-trigger,
-  .warning-card p {
-    overflow-wrap: normal;
-    word-break: keep-all;
-  }
-
-  /* Bedtime amber under time chip / checkbox inset */
-  .time-block--bedtime .section-subhead {
-    padding-left: 0;
-    margin-bottom: 12px;
-  }
-
-  .check-row {
-    margin-bottom: 12px;
-  }
+  .warning-card p { overflow-wrap: normal; word-break: keep-all; }
 }
 
-/* —— Print —— */
-@page {
-  size: A4;
-  margin: 12mm;
-}
-
-@media print {
-  body {
-    background: #fff;
-    padding: 0;
-  }
-
-  .card {
-    box-shadow: none;
-    max-width: none;
-    border-radius: 0;
-    padding: 0;
-  }
-
-  .time-block,
-  .prn-section,
-  .warning-card {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  .check-row input[type="checkbox"] {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-    /* Keep empty boxes for pen marking */
-  }
-
-  .check-row input[type="checkbox"]:checked::after {
-    /* Still show if checked on screen before print; empty is fine for pen */
-  }
-
-  .time-block--morning,
-  .time-block--evening,
-  .time-block--bedtime,
-  .prn-col--oral,
-  .prn-col--topical,
-  .warning-card,
-  .dose-chip,
-  .tag-course,
-  .badge,
-  .time-chip,
-  .sbp-chip,
-  .footnote-bar {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  /* PRN less dense on A4 */
-  .prn-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .prn-row {
-    padding: 16px 18px;
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  .prn-row .med-photo {
-    width: 80px;
-    height: 80px;
-  }
-
-  .prn-list {
-    gap: 12px;
-  }
-
-  .med-latin {
-    overflow-wrap: normal;
-    word-break: keep-all;
-  }
-
-  .time-block,
-  .prn-section,
-  .warnings {
-    margin-bottom: 24px;
-  }
-
-  .section-title .icon,
-  .warning-card .icon,
-  .date-tile .clock {
-    display: none !important;
-  }
-
-  .med-row {
-    padding: 12px 14px;
-  }
-
-  .prn-grid {
-    align-items: start;
-  }
-
-}
-
-
-/* Stack PRN below ~900px (tablet / narrow print preview) */
-@media (max-width: 900px) {
-  .prn-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* —— Photo tap target / lightbox —— */
-.med-photo-btn {
-  display: inline-flex;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: transparent;
-  cursor: zoom-in;
-  border-radius: 12px;
-  flex-shrink: 0;
-  line-height: 0;
-  min-height: 96px;
-  align-items: center;
-}
-.prn-row .med-photo-btn {
-  min-height: 84px;
-}
-.med-photo-btn:focus-visible {
-  outline: 3px solid var(--blue-border);
-  outline-offset: 3px;
-}
-.med-photo-btn .med-photo {
-  pointer-events: none;
-}
-
-body.lightbox-open {
-  overflow: hidden;
-}
+/* —— Photo lightbox —— */
+body.lightbox-open { overflow: hidden; }
 
 .lightbox {
   position: fixed;
@@ -870,9 +717,7 @@ body.lightbox-open {
   justify-content: center;
   padding: 16px;
 }
-.lightbox[hidden] {
-  display: none !important;
-}
+.lightbox[hidden] { display: none !important; }
 .lightbox-backdrop {
   position: absolute;
   inset: 0;
@@ -925,15 +770,112 @@ body.lightbox-open {
   outline-offset: 2px;
 }
 
+/* —— Print (v3 P0-1): exactly 4 A4 pages —— */
+@page {
+  size: A4;
+  margin: 12mm;
+}
+
 @media print {
-  .lightbox,
-  .med-photo-btn {
-    /* keep photos in print; hide only overlay */
+  body { background: #fff; padding: 0; }
+
+  .card {
+    box-shadow: none;
+    max-width: none;
+    border-radius: 0;
+    padding: 0;
   }
-  .lightbox {
-    display: none !important;
+
+  .time-block--morning,
+  .time-block--evening,
+  .time-block--bedtime,
+  .prn-col--oral,
+  .prn-col--topical,
+  .warning-card,
+  .dose-chip,
+  .chip-limit,
+  .badge,
+  .time-chip,
+  .footnote-bar,
+  .check-row input[type="checkbox"] {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-  .med-photo-btn {
-    cursor: default;
+
+  .lightbox { display: none !important; }
+  .med-photo-btn { cursor: default; }
+
+  /* Header ≤110px (badge included) */
+  .badge { padding: 4px 12px; margin-bottom: 6px; }
+  .header { margin-bottom: 14px; align-items: center; }
+  .header-text {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 14px;
   }
+  .header-text h1 { flex-basis: 100%; font-size: 28px; margin: 0 0 4px; }
+  .header-text .h2 { font-size: 17px; margin: 0; }
+  .header-text .lead { font-size: 16px; }
+  .date-tile { min-height: 0; padding: 6px 12px; box-shadow: none; }
+  .date-tile .clock { display: none !important; }
+  .date-tile .date { margin-top: 0; }
+
+  /* Explicit page map: p1 早上 · p2 晚餐後+睡前 · p3 PRN · p4 warnings */
+  .time-block,
+  .prn-section,
+  .warnings { margin-bottom: 0; }
+  .time-block--evening { margin-bottom: 24px; }
+  .time-block--evening,
+  .prn-section,
+  .warnings {
+    break-before: page;
+    page-break-before: always;
+  }
+  .warnings { margin-bottom: 24px; }
+
+  .time-block,
+  .prn-col,
+  .prn-row,
+  .med-row,
+  .warning-card,
+  .footnote-bar {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .section-head,
+  .section-title,
+  .section-subhead,
+  .check-row,
+  .prn-section > h2,
+  .prn-col h3,
+  .warnings > h2,
+  .warning-card h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Section-title emoji stay screen-only; warning SVG icons DO print */
+  .section-title .icon { display: none !important; }
+
+  /* Compact rows */
+  .med-row { min-height: 0; padding: 10px 14px; }
+  .med-list,
+  .prn-list { gap: 8px; }
+  .med-photo { width: 72px; height: 72px; }
+
+  /* PRN: 2 columns */
+  .prn-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+  .prn-col { padding: 12px; }
+  .prn-row { padding: 10px 12px; gap: 10px; }
+  .prn-row .med-photo { width: 64px; height: 64px; }
+
+  /* Type floor: name 22px, body ≥16px, nothing <14px */
+  .med-name--prn { font-size: 22px; }
+  .footer { font-size: 16px; }
 }
