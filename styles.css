@@ -614,6 +614,7 @@ body {
   color: var(--danger);
   font-weight: 700;
   font-size: 18px;
+  white-space: nowrap; /* v3 #8: rule phrases never split (e.g. 療｜程) */
 }
 
 /* —— Footer —— */
