@@ -36,7 +36,7 @@
     </header>
 
     <!-- Morning -->
-    <section class="time-block time-block--morning" aria-labelledby="morning-title">
+    <section class="time-block time-block--morning" id="block-morning" data-block="morning" aria-labelledby="morning-title">
       <div class="section-head">
         <h2 class="section-title" id="morning-title"><span class="icon" aria-hidden="true">☀️</span> 早上 · 早餐後</h2>
         <span class="time-chip">08:00–09:00</span>
@@ -113,7 +113,7 @@
     </section>
 
     <!-- Evening -->
-    <section class="time-block time-block--evening" aria-labelledby="evening-title">
+    <section class="time-block time-block--evening" id="block-evening" data-block="evening" aria-labelledby="evening-title">
       <div class="section-head">
         <h2 class="section-title" id="evening-title"><span class="icon" aria-hidden="true">🌙</span> 晚餐後</h2>
         <span class="time-chip">18:30–19:30</span>
@@ -151,7 +151,7 @@
     </section>
 
     <!-- Bedtime -->
-    <section class="time-block time-block--bedtime" aria-labelledby="bedtime-title">
+    <section class="time-block time-block--bedtime" id="block-bedtime" data-block="bedtime" aria-labelledby="bedtime-title">
       <div class="section-head">
         <h2 class="section-title" id="bedtime-title"><span class="icon" aria-hidden="true">🌌</span> 睡前 · 空腹</h2>
         <span class="time-chip">22:30</span>
@@ -196,7 +196,7 @@
     </section>
 
     <!-- PRN + topical -->
-    <section class="prn-section" aria-labelledby="prn-title">
+    <section class="prn-section" id="block-prn" aria-labelledby="prn-title">
       <h2 id="prn-title">
         <span class="prn-title-full">按需要（PRN）及外用藥物<span class="nowrap">時間表</span></span>
         <span class="prn-title-short">按需要與外用藥物</span>
@@ -378,6 +378,25 @@
         }
       }
     });
+  })();
+
+  /* v4-1: "now" ring — <12:00 早上 · 12:00–20:59 晚餐後 · ≥21:00 睡前 (PRN never "now").
+     JS off -> no ring. */
+  (function () {
+    var blocks = document.querySelectorAll('.time-block[data-block]');
+    function current() {
+      var h = new Date().getHours();
+      return h < 12 ? 'morning' : h < 21 ? 'evening' : 'bedtime';
+    }
+    function mark() {
+      var now = current(), i;
+      for (i = 0; i < blocks.length; i++) {
+        blocks[i].classList.toggle('is-now', blocks[i].getAttribute('data-block') === now);
+      }
+    }
+    mark();
+    setInterval(mark, 60000);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) mark(); });
   })();
   </script>
 </body>

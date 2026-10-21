@@ -139,6 +139,14 @@ body {
   margin-top: 4px;
 }
 
+/* —— v4-1 "now" ring only (jump bar dropped per Justin: fewest buttons). Screen only;
+   nothing to tap, no focus stop. —— */
+/* COMPARE 1a: navy ring on EVERY block (睡前 included) — outline + offset, no box-shadow */
+.time-block.is-now {
+  outline: 4px solid var(--navy);
+  outline-offset: 4px;
+}
+
 /* —— Time blocks —— */
 .time-block {
   border-radius: 16px;
@@ -887,6 +895,7 @@ body.lightbox-open { overflow: hidden; }
   }
 
   .lightbox { display: none !important; }
+  .time-block.is-now { outline: none; }
   .med-photo-btn { cursor: default; }
 
   /* Header ≤110px (badge included) */
