@@ -1,0 +1,10 @@
+# Working material that must never ship on the public Pages site
+assets/meds/_candidates/
+_candidates/
+review-polish/
+impeccable-v3/
+tech-review/
+*.pdf
+NOTE-FOR-JESSIE.md
+V3-PLAN.md
+node_modules/
