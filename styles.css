@@ -702,6 +702,29 @@ body {
   .warning-card p { overflow-wrap: normal; word-break: keep-all; }
 }
 
+/* —— Very narrow phones <360px (Celine 320px call): no sideways scroll —— */
+@media (max-width: 359px) {
+  .prn-grid { grid-template-columns: minmax(0, 1fr); }
+  .prn-row { gap: 12px; }
+  .prn-row .med-photo { width: 64px; height: 64px; }
+  /* chips may wrap BETWEEN chips (flex-wrap), never inside a chip */
+  .med-meta { flex-wrap: wrap; }
+  /* nowrap spans in warnings + footer may wrap at this width only */
+  .warning-card .nowrap,
+  .warning-card .danger,
+  .footer .nowrap { white-space: normal; }
+  /* Celine final 1: the long PRN chip may wrap INSIDE itself (font size kept, 2px border kept) */
+  .prn-max-chip--long {
+    white-space: normal;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 6px 12px;
+    line-height: 1.3;
+  }
+  /* …and the 西柚 red span may break (keep-all would hold it as one 216px word) */
+  .warning-card .danger { word-break: normal; }
+}
+
 /* —— Photo lightbox —— */
 body.lightbox-open { overflow: hidden; }
 
