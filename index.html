@@ -329,6 +329,7 @@
     var lb = document.getElementById('med-lightbox');
     if (!lb) return;
     var img = lb.querySelector('.lightbox-img');
+    var main = document.querySelector('main');
     var lastFocus = null;
 
     function open(src, alt) {
@@ -338,12 +339,14 @@
       lb.hidden = false;
       lb.setAttribute('aria-hidden', 'false');
       document.body.classList.add('lightbox-open');
+      if (main) main.inert = true; /* background not focusable / not in a11y tree */
       lb.querySelector('.lightbox-close').focus();
     }
     function close() {
       lb.hidden = true;
       lb.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('lightbox-open');
+      if (main) main.inert = false;
       img.removeAttribute('src');
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
@@ -360,7 +363,18 @@
       if (e.target.closest('[data-close]')) close();
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !lb.hidden) close();
+      if (lb.hidden) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key === 'Tab') {
+        /* focus trap: cycle within the dialog (fallback where inert is unsupported) */
+        var f = lb.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey ? document.activeElement === first || !lb.contains(document.activeElement)
+                       : document.activeElement === last || !lb.contains(document.activeElement)) {
+          e.preventDefault();
+          (e.shiftKey ? last : first).focus();
+        }
+      }
     });
   })();
   </script>
