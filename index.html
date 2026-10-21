@@ -31,7 +31,7 @@
       <div class="date-tile" role="group" aria-label="日期">
         <div class="clock" aria-hidden="true">🕐</div>
         <span class="label">每日準時</span>
-        <span class="date">2026年10月20日</span>
+        <span class="date js-today">2026年10月20日</span>
       </div>
     </header>
 
@@ -311,7 +311,7 @@
     <!-- Footer -->
     <footer class="footer">
       <p>
-        本卡僅供個人服藥提醒之用，不能取代醫生或藥劑師指示。如有疑問、不適或藥物過敏，請立即求醫。劑量與時間以處方為準；本頁日期：2026年10月20日。
+        本卡僅供個人服藥提醒之用，不能取代醫生或藥劑師指示。如有疑問、不適或藥物過敏，請立即求醫。劑量與時間以處方為準；本頁日期：<span class="js-today">2026年10月20日</span>。
       </p>
       <p class="hint">建議貼於雪櫃門或藥箱旁</p>
       <p>長者大字版 · 高對比設計</p>
@@ -380,23 +380,51 @@
     });
   })();
 
-  /* v4-1: "now" ring — <12:00 早上 · 12:00–20:59 晚餐後 · ≥21:00 睡前 (PRN never "now").
-     JS off -> no ring. */
+  /* Hong Kong clock, shared by:
+     - today's date in the 每日準時 tile + footer 本頁日期 (.js-today), e.g. 2026年10月21日 (no zero padding)
+     - v4-1 "now" ring — <12:00 早上 · 12:00–20:59 晚餐後 · ≥21:00 睡前 (PRN never "now")
+     Always Asia/Hong_Kong time, whatever the phone's own time zone.
+     JS off -> the static date in the HTML stays, no ring. */
   (function () {
-    var blocks = document.querySelectorAll('.time-block[data-block]');
-    function current() {
-      var h = new Date().getHours();
-      return h < 12 ? 'morning' : h < 21 ? 'evening' : 'bedtime';
+    var fmt = null;
+    try {
+      fmt = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Asia/Hong_Kong', year: 'numeric', month: 'numeric', day: 'numeric',
+        hour: 'numeric', hourCycle: 'h23'
+      });
+      if (!fmt.formatToParts) fmt = null;
+    } catch (e) { fmt = null; }
+    function hkNow() {
+      var d = new Date(), o = {}, p, i;
+      if (fmt) {
+        p = fmt.formatToParts(d);
+        for (i = 0; i < p.length; i++) o[p[i].type] = p[i].value;
+        return { y: +o.year, m: +o.month, d: +o.day, h: +o.hour % 24 };
+      }
+      d = new Date(d.getTime() + 8 * 3600000); /* fallback: HK = UTC+8, no daylight saving */
+      return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate(), h: d.getUTCHours() };
     }
-    function mark() {
-      var now = current(), i;
+    var dates = document.querySelectorAll('.js-today');
+    var blocks = document.querySelectorAll('.time-block[data-block]');
+    function update() {
+      var t = hkNow(), i;
+      var s = t.y + '年' + t.m + '月' + t.d + '日';
+      var now = t.h < 12 ? 'morning' : t.h < 21 ? 'evening' : 'bedtime';
+      for (i = 0; i < dates.length; i++) {
+        if (dates[i].textContent !== s) dates[i].textContent = s;
+      }
       for (i = 0; i < blocks.length; i++) {
         blocks[i].classList.toggle('is-now', blocks[i].getAttribute('data-block') === now);
       }
     }
-    mark();
-    setInterval(mark, 60000);
-    document.addEventListener('visibilitychange', function () { if (!document.hidden) mark(); });
+    update();
+    setInterval(update, 60000);
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) update(); });
+    window.addEventListener('beforeprint', update);
+    if (window.matchMedia) {
+      var mq = window.matchMedia('print');
+      if (mq.addListener) mq.addListener(function (e) { if (e.matches) update(); });
+    }
   })();
   </script>
 </body>
