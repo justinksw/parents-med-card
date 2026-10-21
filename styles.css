@@ -854,8 +854,12 @@ body.lightbox-open { overflow: hidden; }
   }
   .warnings { margin-bottom: 24px; }
 
+  /* Celine-2: blocks/columns MAY break between rows; a row never splits */
   .time-block,
-  .prn-col,
+  .prn-col {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
   .prn-row,
   .med-row,
   .warning-card,
@@ -863,6 +867,14 @@ body.lightbox-open { overflow: hidden; }
     break-inside: avoid;
     page-break-inside: avoid;
   }
+  /* …and every heading stays with its date/tick row + first row */
+  .section-head,
+  .section-subhead,
+  .check-row,
+  .prn-col h3 { break-after: avoid; page-break-after: avoid; }
+  .med-list > :first-child,
+  .prn-list > :first-child,
+  .footnote-bar { break-before: avoid; page-break-before: avoid; }
 
   .section-head,
   .section-title,
