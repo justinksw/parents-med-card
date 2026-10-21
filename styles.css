@@ -729,6 +729,15 @@ body {
   .warning-card p { overflow-wrap: normal; word-break: keep-all; }
 }
 
+/* —— Celine: 3 long 早上 purpose phrases break ONLY at their <wbr> hint, <400px only.
+   ≥400: nowrap = exactly the old behaviour (keep-all gave no break inside them). —— */
+.wbr-phrase { white-space: nowrap; }
+.wbr-phrase wbr { display: none; } /* Chrome breaks at <wbr> even inside nowrap */
+@media (max-width: 399px) {
+  .wbr-phrase wbr { display: inline; }
+  .wbr-phrase { white-space: normal; word-break: keep-all; overflow-wrap: normal; }
+}
+
 /* —— v4-2 + COMPARE 2a–2c: 「已服」 row at the END of each block, phones only.
    CSS order only (no duplicate markup, works without JS); desktop + print unchanged. —— */
 @media screen and (max-width: 639px) {
