@@ -655,7 +655,7 @@ body {
     min-width: 0;
   }
 
-  .section-title { font-size: 22px; }
+  .section-title { font-size: 26px; } /* punch 2 */
 
   /* v3 #9 */
   .med-row {
@@ -678,6 +678,7 @@ body {
     width: 100%;
     min-width: 0;
     min-height: 48px;
+    height: 48px; /* punch 1: exactly 48px; .med-side keeps margin-top 8px */
   }
 
   /* v3 #6: name line 1, bracket line 2 — every row */
