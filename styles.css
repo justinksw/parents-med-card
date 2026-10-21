@@ -395,11 +395,6 @@ body {
 
 .nowrap { white-space: nowrap; }
 
-.keep {
-  display: inline-block;
-  max-width: 100%;
-}
-
 .prn-title-full { display: inline; }
 .prn-title-short { display: none; }
 
