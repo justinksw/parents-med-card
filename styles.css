@@ -611,6 +611,7 @@ body {
   font-weight: 400;
   color: var(--text);
   line-height: 1.5;
+  overflow-wrap: anywhere; /* iOS fix: never run past the card */
 }
 
 .warning-card .danger {
@@ -630,7 +631,7 @@ body {
   line-height: 1.5;
 }
 
-.footer p { margin: 0 0 8px; }
+.footer p { margin: 0 0 8px; overflow-wrap: anywhere; }
 .footer p:last-child { margin-bottom: 0; }
 
 .footer .hint {
@@ -726,7 +727,11 @@ body {
   .prn-title-full { display: none; }
   .prn-title-short { display: inline; }
 
-  .warning-card p { overflow-wrap: normal; word-break: keep-all; }
+  /* iOS fix: WebKit keep-all gives NO break after 。， so a sentence became one unbreakable
+     word and ran past the card. Warning text now wraps normally in both engines. */
+  .warning-card p { word-break: normal; overflow-wrap: anywhere; }
+  .med-purpose { overflow-wrap: anywhere; } /* safety net only: e.g. 晚間服效佳，禁西柚 in WebKit <360 */
+  .med-purpose .danger { white-space: nowrap; } /* …but never 禁西｜柚 */
 }
 
 /* —— Celine: 3 long 早上 purpose phrases break ONLY at their <wbr> hint, <400px only.
@@ -735,7 +740,7 @@ body {
 .wbr-phrase wbr { display: none; } /* Chrome breaks at <wbr> even inside nowrap */
 @media (max-width: 399px) {
   .wbr-phrase wbr { display: inline; }
-  .wbr-phrase { white-space: normal; word-break: keep-all; overflow-wrap: normal; }
+  .wbr-phrase { white-space: normal; word-break: keep-all; overflow-wrap: anywhere; }
 }
 
 /* —— v4-2 + COMPARE 2a–2c: 「已服」 row at the END of each block, phones only.
@@ -786,7 +791,8 @@ body {
 }
 @media (max-width: 359px) {
   .prn-grid { grid-template-columns: minmax(0, 1fr); }
-  .prn-row { gap: 12px; }
+  .prn-row { gap: 8px; }
+  .med-row { gap: 0 6px; } /* iOS fix: （泮托拉唑） needs 108px and 只需服至第4天 111.4px; body had 106px */
   .prn-row .med-photo { width: 64px; height: 64px; }
   /* chips may wrap BETWEEN chips (flex-wrap), never inside a chip */
   .med-meta { flex-wrap: wrap; }
