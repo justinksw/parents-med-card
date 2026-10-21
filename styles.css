@@ -650,6 +650,25 @@ body {
     min-width: 0;
   }
 
+  /* v4-3: one-line 48px date tile (screen only; print keeps its own compact tile) */
+  @media screen {
+    .date-tile {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 12px;
+      text-align: left;
+    }
+    .date-tile .clock { font-size: 20px; margin-bottom: 0; }
+    .date-tile .label,
+    .date-tile .date { font-size: 19px; line-height: 1.2; }  /* COMPARE 3a */
+    .date-tile .label { font-weight: 700; }
+    .date-tile .date { font-weight: 400; color: var(--muted); margin-top: 0; }
+  }
+
   .section-title { font-size: 26px; } /* punch 2 */
 
   /* v3 #9 */
@@ -703,6 +722,11 @@ body {
 }
 
 /* —— Very narrow phones <360px (Celine 320px call): no sideways scroll —— */
+@media screen and (max-width: 359px) {
+  /* v4-3 / COMPARE 3b: date tile may take 2 lines, date on line 2 */
+  .date-tile { flex-wrap: wrap; row-gap: 2px; padding: 6px 16px; }
+  .date-tile .date { flex-basis: 100%; padding-left: 30px; }
+}
 @media (max-width: 359px) {
   .prn-grid { grid-template-columns: minmax(0, 1fr); }
   .prn-row { gap: 12px; }
