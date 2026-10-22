@@ -1,7 +1,7 @@
 # Medicine photo sources — 個人專屬用藥卡
 
 Fetched / last updated: **2026-10-20** (Asia/Hong_Kong)  
-Purpose: personal printable med card for Justin’s parents (not commercial redistribution).  
+Purpose: personal printable med card for family use (not commercial redistribution).  
 Policy: prefer Wikimedia Commons / NIH public-domain / clearly CC-licensed images when available. Pack+pill Google Images downloads used for brand/strength match when free sources were unavailable — **rights remain with photographer/brand/site**; replace with household pack photos when possible.
 
 | Chinese name | Latin / product | Local file | Source URL | License / attribution | Fetched (Asia/Hong_Kong) |

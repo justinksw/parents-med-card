@@ -1,10 +1,10 @@
-# Parents medicine card — reference capture
+# Medicine card — reference capture
 Source: https://www.meta.ai/share/a/f40a6af6-e944-4bae-b57c-a5becc38f8d9
 Captured: 2026-10-20 (Asia/Hong_Kong)
 Status: first draft ready — open index.html (see README.md)
 
 ## Goal
-Static printable A4 medicine schedule for Justin's parents (60+).
+Static printable A4 medicine schedule for family caregivers (60+).
 Same structure/layout as Meta AI poster. Replace CSS fake pills with REAL medicine photos.
 Large text, high contrast, big tap targets. Traditional Chinese labels (match reference).
 

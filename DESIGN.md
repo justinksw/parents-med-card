@@ -1,5 +1,5 @@
 # 個人專屬用藥卡 — Design brief for Jessie
-**Audience:** Justin’s parents (60+) · **Format:** A4 portrait printable + phone-readable · **Language:** Traditional Chinese (HK) · **Date on card:** 2026年10月20日  
+**Audience:** family caregivers (60+) · **Format:** A4 portrait printable + phone-readable · **Language:** Traditional Chinese (HK) · **Date on card:** 2026年10月20日  
 **Reference:** keep the same section order & colour-block structure as Meta AI share.  
 **Screenshots:** `/workspace/med-card-01-*.png` … `03-*.png` and copies under `assets/` if present.
 

@@ -1,4 +1,4 @@
-# 個人專屬用藥卡 (Parents med card)
+# 個人專屬用藥卡
 
 Printable / phone-friendly full-day medicine schedule for family caregivers (Traditional Chinese, senior-friendly).
 
